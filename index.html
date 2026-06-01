@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samir Dahit Spam Msg Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #020205;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ambient Background Glow */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(45deg, #ff003c, #00ffff);
+            border-radius: 50%;
+            top: 10%;
+            left: 15%;
+            filter: blur(160px);
+            opacity: 0.15;
+        }
+
+        /* VIP Cyber Container */
+        .ultimate-card {
+            width: 500px;
+            background: rgba(10, 5, 5, 0.75);
+            border-radius: 30px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 2px solid #ff003c;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 255, 255, 0.1);
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Top Signature Multi-Laser Bar */
+        .laser-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff0000, #00ffff, #ffff00, #00ff7f, #ff00ff);
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.8);
+        }
+
+        /* Logo Slot */
+        .logo-box {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ff003c;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+        }
+        .logo-box span {
+            font-size: 26px;
+            filter: drop-shadow(0 0 5px #00ffff);
+        }
+
+        /* ЁЯМЯ Custom Neon Glowing Title Styling ЁЯМЯ */
+        .header {
+            text-align: center;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        .header h2 {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        /* Individual Glow Effects per word */
+        .glow-samir { color: #ff0000; text-shadow: 0 0 12px #ff0000, 0 0 20px #ff0000; }
+        .glow-dahit { color: #00ffff; text-shadow: 0 0 12px #00ffff, 0 0 20px #00ffff; }
+        .glow-spam  { color: #ffff00; text-shadow: 0 0 12px #ffff00, 0 0 20px #ffff00; }
+        .glow-msg   { color: #00ff7f; text-shadow: 0 0 12px #00ff7f, 0 0 20px #00ff7f; }
+        .glow-tool  { color: #ff00ff; text-shadow: 0 0 12px #ff00ff, 0 0 20px #ff00ff; }
+        
+        .section-label {
+            font-size: 11px;
+            color: #00ff7f;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Red Laser Framed Slots */
+        .cyber-box {
+            background: rgba(3, 3, 6, 0.9);
+            padding: 15px;
+            border-radius: 18px;
+            border: 2px solid #ff003c; 
+            position: relative;
+        }
+        .cyber-box:hover, .cyber-box:focus-within {
+            border-color: #00ff7f;
+        }
+
+        /* Glowing Corner Stars */
+        .cyber-box::before { content: 'тнР'; position: absolute; top: -10px; left: -8px; font-size: 12px; text-shadow: 0 0 10px #ff003c; }
+        .cyber-box::after { content: 'тнР'; position: absolute; bottom: -10px; right: -8px; font-size: 12px; text-shadow: 0 0 10px #00ff7f; }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            background: rgba(15, 10, 12, 0.7);
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #00ff7f;
+        }
+
+        input[type="number"] {
+            width: 90px;
+            padding: 6px 10px;
+            text-align: center;
+            color: #00ff7f;
+        }
+
+        .slider-container {
+            margin-top: 10px;
+        }
+        input[type="range"] {
+            width: 100%;
+            accent-color: #00ff7f;
+            cursor: pointer;
+        }
+
+        /* List Output Main Scroll View */
+        .list-container {
+            width: 100%;
+            height: 200px;
+            background: rgba(10, 15, 12, 0.8);
+            border: 1px solid rgba(0, 255, 127, 0.3);
+            border-radius: 12px;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #00ff7f;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .list-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .list-container::-webkit-scrollbar-thumb {
+            background: #ff003c;
+            border-radius: 10px;
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 10px;
+            border-radius: 6px;
+            border-left: 3px solid #00ff7f;
+            word-break: break-all;
+        }
+
+        /* Action Execution Button */
+        .master-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #ff003c 0%, #00ff7f 100%);
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            text-transform: uppercase;
+        }
+        .master-btn:hover {
+            background: linear-gradient(90deg, #00ff7f 0%, #fff 50%, #ff003c 100%);
+            transform: scale(1.01);
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.4);
+        }
+
+        .hashtag-footer {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ff003c;
+            margin-top: 5px;
+        }
+        .hashtag-footer span { color: #00ff7f; }
+
+        .toast-notify {
+            text-align: center;
+            font-size: 13px;
+            color: #00ff7f;
+            font-weight: bold;
+            height: 15px;
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ultimate-card">
+    <div class="laser-line"></div>
+
+    <div class="logo-box">
+        <span>тЪб</span>
+    </div>
+
+    <div class="header">
+        <h2>
+            <span class="glow-samir">Samir</span>
+            <span class="glow-dahit">Dahit</span>
+            <span class="glow-spam">Spam</span>
+            <span class="glow-msg">Msg</span>
+            <span class="glow-tool">Tool</span>
+        </h2>
+    </div>
+
+    <div class="cyber-box">
+        <div class="section-label"><span>тнР Enter Text</span></div>
+        <input type="text" id="user-text" value="I love you" placeholder="Enter text here...">
+    </div>
+
+    <div class="cyber-box">
+        <div class="section-label">
+            <span>тнР Set Custom Limit (10 - 2000)</span>
+            <input type="number" id="loop-number" min="10" max="2000" value="500" oninput="syncSliderFromInput()">
+        </div>
+        <div class="slider-container">
+            <input type="range" id="loop-slider" min="10" max="2000" value="500" step="5" oninput="syncInputFromSlider()">
+        </div>
+    </div>
+
+    <div class="cyber-box">
+        <div class="section-label"><span>тнР Numbered List Preview</span></div>
+        <div id="list-output" class="list-container">
+            <div style="color: #aaa; text-align: center; margin-top: 70px;">Click generate to stream list...</div>
+        </div>
+        
+        <button class="master-btn" style="margin-top: 12px;" onclick="generateAndCopyList()">ЁЯУЛ Copy Full List Instantly</button>
+    </div>
+
+    <div class="hashtag-footer">#Samir_Dahit_Spam_Msg_Tool</div>
+    <div id="status-toast" class="toast-notify">List copied successfully!</div>
+</div>
+
+<script>
+    const loopSlider = document.getElementById('loop-slider');
+    const loopNumber = document.getElementById('loop-number');
+
+    function syncInputFromSlider() {
+        loopNumber.value = loopSlider.value;
+        generateListView();
+    }
+
+    function syncSliderFromInput() {
+        let val = parseInt(loopNumber.value);
+        if (isNaN(val)) return;
+        if (val > 2000) loopNumber.value = 2000;
+        if (val < 1) loopNumber.value = 1;
+        loopSlider.value = loopNumber.value;
+        generateListView();
+    }
+
+    function generateListView() {
+        const inputField = document.getElementById('user-text');
+        const listOutput = document.getElementById('list-output');
+        let targetText = inputField.value;
+        let count = parseInt(loopNumber.value);
+
+        if (targetText === "" || isNaN(count)) return;
+
+        let htmlContent = "";
+        for (let i = 1; i <= count; i++) {
+            htmlContent += `<div class="list-item">${i}. ${targetText}</div>`;
+        }
+        listOutput.innerHTML = htmlContent;
+    }
+
+    function generateAndCopyList() {
+        const inputField = document.getElementById('user-text');
+        let targetText = inputField.value;
+        let count = parseInt(loopNumber.value);
+
+        if (targetText === "") {
+            alert("Please type some text first, Samir!");
+            return;
+        }
+
+        let finalPlainString = "";
+        for (let i = 1; i <= count; i++) {
+            finalPlainString += `${i}. ${targetText}\n`;
+        }
+
+        const temporaryTextArea = document.createElement("textarea");
+        temporaryTextArea.value = finalPlainString.trim();
+        document.body.appendChild(temporaryTextArea);
+        temporaryTextArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(temporaryTextArea);
+
+        generateListView();
+        showSystemToast(`ЁЯЪА Row 1 to ${count} Copied Directly!`);
+    }
+
+    function showSystemToast(msg) {
+        const toast = document.getElementById('status-toast');
+        toast.innerText = msg;
+        toast.style.opacity = "1";
+        setTimeout(() => {
+            toast.style.opacity = "0";
+        }, 2500);
+    }
+
+    window.onload = function() {
+        generateListView();
+    };
+</script>
+
+</body>
+</html>
+
